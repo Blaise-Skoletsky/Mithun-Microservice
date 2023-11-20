@@ -13,14 +13,41 @@ Communication Contract:
 
     Requesting Data:
 
-    To request data make sure to have the client side code using a Request socket. This program will use the socket.send_string command to send a word 
+    To request data make sure to have the client side code using a Request socket. This program will use the socket.send_string command to send a key-word relating to what you want sent back. Key words that work are 'verb', 'adjective', 'place', 'plural-noun', and 'body'. Any other word sent will result in an error. 
+
+    Once the microservice recieves the word, (recive steps located below), that word will be used as a variable to trigger the word that is sent back. Ex, place being recieved by the microservice would mke the randomizer function trigger on the places array, causing a place to be sent back. 
+
+    Code of this example: 
+
+        Client side request:
 
 
-To recieve data, use the socket.recv() command. This should recive some information sent from the other file to this file. In this instance, A request for a word is sent to the microservice.py file. The file recieves the data by setting the message variable equal to socket.recv(). This information has to be decoded into utf-8 characters, which can be done by setting the recieved message variable = to message.decode('utf-8).
+        socket.send_string('place')
 
-To request data, you would have to send information to the other file, using socket.send_string. When the other file recieves this string, it will use the contents to send back some answer. For example in this microservice the main project sends a key-phrase to the microservice, this acts as a request to the microservice, as it sees this phrase and uses it to send back a certain word. 
+        //Now we enter a loop to await the responce from our request: 
+
+        while True:
+
+            //Responce recieves the word we wanted.
+            responce = socket.recv_string()
+        
+    Microservice code: 
+
+        //A loop is checking at all times for a request from the client:
+        while True:
+            message = socket.recv_string()
+            
+            // If no message is found, nothing happens.
+            // If found, perform some actions:
+            result = randomizer(message)
+
+            //responce to request
+            socket.send_string(result)
 
 
+Recieving Data:
+
+    In order to recieve data from the microservice, after requesting enter a while loop that uses the socket.recv_string. This loop should be done right after making the request discussed prior.
 
 
 
