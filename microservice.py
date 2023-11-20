@@ -99,7 +99,7 @@ body_parts_array = [
     "Toes", "Ankles", "Heels", "Toenails", "Fingernails",
     "Hair", "Eyebrows", "Eyelashes", "Forehead", "Jaw",
     "Cheeks"
-    # ... (add more body parts as needed)
+
 ]
 
 
