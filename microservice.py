@@ -127,10 +127,10 @@ socket.bind("tcp://*:5555")
 
 while True:
     # Wait for next request from client
-    message = socket.recv()
+    message = socket.recv_string()
 
     # Call randomizer and send the result back to the client
-    result = randomizer(message.decode('utf-8'))
+    result = randomizer(message)
     socket.send_string(result)
     print("Sent response: %s" % result)
 

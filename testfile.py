@@ -6,7 +6,7 @@ socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5555")
 
 
-socket.send(b"place")
+socket.send_string("place")
 
 while True:
     
