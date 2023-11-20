@@ -6,7 +6,7 @@ socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5555")
 
 
-socket.send_string("place")
+socket.send_string("adjective")
 
 while True:
     
@@ -15,6 +15,8 @@ while True:
     response = socket.recv_string()
     print("Received response from server: %s" % response)
     break
+
+socket.send_string('close')
 
 
 socket.close()
