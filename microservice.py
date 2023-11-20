@@ -129,9 +129,15 @@ while True:
     # Wait for next request from client
     message = socket.recv_string()
 
+    if message == 'close':
+        break
+
     # Call randomizer and send the result back to the client
     result = randomizer(message)
     socket.send_string(result)
     print("Sent response: %s" % result)
+
+socket.close()
+context.term()
 
 

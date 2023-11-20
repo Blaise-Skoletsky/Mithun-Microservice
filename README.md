@@ -50,6 +50,8 @@ Recieving Data:
     In order to recieve data from the microservice, after requesting enter a while loop that uses the socket.recv_string. This loop should be done right after making the request discussed prior.
 
 
+IMPORTANT: In order for the microservie to be closed, send the string 'close' at the end of the client program using the socket.send_string() method. This will allow the program to close naturally. 
+
 
 UML Sequence Diagram: 
 
